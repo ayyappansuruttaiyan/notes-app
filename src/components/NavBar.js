@@ -1,56 +1,62 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
+// import Notes from "./Notes";
 function NavBar() {
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-4 left-container">
-          <div className="profile">
-            <img src="" alt="avatar" />
-            <h5>John Doe</h5>
-            <p>johndoe@gmail.com</p>
-          </div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">
-                  <i class="fa-solid fa-house"></i>Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/search">
-                  <i class="fa-solid fa-magnifying-glass"></i>Search
-                </Link>
-              </li>
+    <nav className="container text-xl mt-2">
+      <ul className="m-4">
+        <li className="mt-2 bg-stone-200 w-60 p-2 rounded">
+          <Link to="/">
+            <span>
+              <i class="fa-solid fa-house"></i>
+            </span>
+            Home
+          </Link>
+        </li>
+        <li className="mt-2 w-60 p-2 rounded">
+          <Link to="/search">
+            <span>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            Search
+          </Link>
+        </li>
 
-              <li>
-                <Link to="/notes">
-                  <i class="fa-solid fa-note-sticky"></i> Notes
-                </Link>
-              </li>
-              <li>
-                <Link to="/tasks">
-                  <i class="fa-solid fa-circle-check"></i> Tasks
-                </Link>
-              </li>
-              <li>
-                <Link to="/archive">
-                  <i class="fa-solid fa-box-archive"></i>
-                  Archive
-                </Link>
-              </li>
-              <li>
-                <Link to="/bin">
-                  <i class="fa-solid fa-trash"></i>Bin
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="col-md-8">Welcome John Doe</div>
-      </div>
-    </div>
+        <li className="mt-2 w-60 p-2 rounded">
+          <Link to="/notes">
+            <span>
+              <i class="fa-solid fa-note-sticky"></i>
+            </span>
+            Notes
+          </Link>
+        </li>
+        <li className="mt-2 w-60 p-2 rounded">
+          <Link to="/tasks">
+            <span>
+              <i class="fa-solid fa-circle-check"></i>
+            </span>
+            Tasks
+          </Link>
+        </li>
+        <li className="mt-2 w-60 p-2 rounded">
+          <Link to="/archive">
+            <span>
+              <i class="fa-solid fa-box-archive"></i>
+            </span>
+            Archive
+          </Link>
+        </li>
+        <li className="mt-2 w-60 p-2 rounded ">
+          <Link to="/bin">
+            <span>
+              <i class="fa-solid fa-trash"></i>
+            </span>
+            Bin
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
