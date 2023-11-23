@@ -13,10 +13,10 @@ import Archive from "./pages/Archive";
 
 function App() {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row ">
       <Router>
-        <div className="basis-1/4 bg-white-300 h-[100dvh]">
-          <div className="flex my-3 mx-5">
+        <div className="basis-1/4 bg-white-300 h-[100dvh] ">
+          <div className="flex my-3 mx-5 ">
             <img
               className="rounded-full h-20 w-20 mr-4"
               src={Avatar}
@@ -29,7 +29,7 @@ function App() {
           </div>
           <NavBar />
         </div>
-        <div className="basis-3/4 bg-violet-100 p-3 h-[100dvh]">
+        <div className="basis-3/4 bg-violet-100 p-3  min-h-screen	">
           <Routes>
             <Route path="/" Component={Home} />
             <Route path="/search" Component={Search} />
