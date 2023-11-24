@@ -8,6 +8,7 @@ function Note({ notes, onAddNotes, onToggle, isOpen, onDeleteItem }) {
       onToggle={onToggle}
       isOpen={isOpen}
       onDeleteItem={onDeleteItem}
+      
     />
   );
 }

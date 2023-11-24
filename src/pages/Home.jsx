@@ -1,13 +1,13 @@
 import React from "react";
 
-function Home({ notes, tasks, onDeleteItem }) {
+function Home({ notes, tasks, onDeleteItem, user }) {
   let newNotes = notes;
 
   console.log(notes.length);
   return (
     <div className="container bg-violet">
       {/* start my notes  */}
-      <h1 className="text-xl my-3 font-medium">Welcome John</h1>
+      <h1 className="text-xl my-3 font-medium">Welcome {user.name}</h1>
       <span className="flex row my-4">
         <h4 className="text-xl font-medium">
           <i className="fa-solid fa-note-sticky mr-2 text-base"></i>My Notes

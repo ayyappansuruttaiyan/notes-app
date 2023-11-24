@@ -19,7 +19,12 @@ import { useState } from "react";
 function App() {
   // const { loggedIn } = useAuthentication();
   // const [authenticate, setAuthenticated] = useState(false);
-  const login = { avatar: "", name: "John Doe", email: "johndoe@example.com" };
+  const [user, setUser] = useState({
+    avatar: "",
+    name: "John Doe",
+    email: "johndoe@example.com",
+  });
+
   const [notes, setNotes] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
@@ -62,8 +67,8 @@ function App() {
               alt="avatar"
             />
             <div className="flex row items-center">
-              <h5 className="text-xl">{login.name}</h5>
-              <p className="text-sm">{login.email}</p>
+              <h5 className="text-xl">{user.name}</h5>
+              <p className="text-sm">{user.email}</p>
             </div>
           </div>
           <NavBar />
@@ -74,6 +79,7 @@ function App() {
               path="/"
               element={
                 <Home
+                  user={user}
                   notes={notes}
                   tasks={tasks}
                   onDeleteItem={handleDeleteItem}
