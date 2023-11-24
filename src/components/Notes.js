@@ -47,15 +47,15 @@ function Notes() {
           <p>Today, 10:10 AM</p>
         </div>
         <div className="flex gap-6">
-          <i class="fa-solid fa-text-width"></i>
-          <i class="fa-solid fa-paintbrush"></i>
-          <i class="fa-solid fa-list-ul"></i>
-          <i class="fa-solid fa-a"></i>
-          <i class="fa-solid fa-align-left"></i>
-          <i class="fa-solid fa-rotate-left"></i>
-          <i class="fa-solid fa-rotate-right"></i>
+          <i class="fa-solid fa-text-width cursor-pointer"></i>
+          <i class="fa-solid fa-paintbrush cursor-pointer"></i>
+          <i class="fa-solid fa-list-ul cursor-pointer"></i>
+          <i class="fa-solid fa-a cursor-pointer"></i>
+          <i class="fa-solid fa-align-left cursor-pointer"></i>
+          <i class="fa-solid fa-rotate-left cursor-pointer"></i>
+          <i class="fa-solid fa-rotate-right cursor-pointer"></i>
         </div>
-        <button className="flex bg-slate-400 w-max rounded-full p-2 items-center my-4 font-semibold">
+        <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
           Add Note
         </button>
       </form>
@@ -69,14 +69,14 @@ function Notes() {
             <p className="font-sm my-2">Recently Viewed</p>
           </span>
 
-          <div className="flex flex-row gap-2">
+          <div className="grid grid-cols-3 gap-2">
             {notes.map((note) => (
-              <div className="basis-1/4 bg-white p-2 box-border  rounded shadow-2xl shadow-black/150">
+              <div className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150">
                 <span className="flex justify-between text-xl font-medium">
                   <h2 className="mb-2">{note.title}</h2>
                   <span>
-                    <i className="fa-solid fa-pencil mr-3"></i>
-                    <i className="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-pencil mr-3 cursor-pointer"></i>
+                    <i className="fa-solid fa-trash cursor-pointer"></i>
                   </span>
                 </span>
                 <p className="mb-2">{note.note}</p>

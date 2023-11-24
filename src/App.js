@@ -2,7 +2,7 @@ import "./App.css";
 import "./index.css";
 import Avatar from "./images/avatar.jpeg";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+// import Login from "./pages/Authentication/Login";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
@@ -10,10 +10,18 @@ import Search from "./pages/Search";
 import Notes from "./pages/Notes";
 import Bin from "./pages/Bin";
 import Archive from "./pages/Archive";
+// import { useState } from "react";
+// import SignUp from "./pages/Authentication/SignUp";
+// import { useAuthentication } from "./Contexts/Authentication.context";
+// import SideBar from "./components/SideBar";
 
 function App() {
+  // const { loggedIn } = useAuthentication();
+  // const [authenticate, setAuthenticated] = useState(false);
+
   return (
     <div className="flex flex-row ">
+      {/* <Router>{renderRoutes()}</Router> */}
       <Router>
         <div className="basis-1/4 bg-white-300 h-[100dvh] ">
           <div className="flex my-3 mx-5 ">
@@ -31,7 +39,7 @@ function App() {
         </div>
         <div className="basis-3/4 bg-violet-100 p-3  min-h-screen	">
           <Routes>
-            <Route path="/" Component={Home} />
+            <Route path="/dashboard" Component={Home} />
             <Route path="/search" Component={Search} />
             <Route path="/notes" Component={Notes} />
             <Route path="/archive" Component={Archive} />

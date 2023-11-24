@@ -7,7 +7,7 @@ function NavBar() {
     <nav className="container text-xl mt-2">
       <ul className="m-4">
         <li className="mt-2 bg-stone-200 w-60 p-2 rounded">
-          <Link to="/">
+          <Link to="/dashboard">
             <span>
               <i class="fa-solid fa-house"></i>
             </span>
