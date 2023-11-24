@@ -10,6 +10,7 @@ import Search from "./pages/Search";
 import Notes from "./pages/Notes";
 import Bin from "./pages/Bin";
 import Archive from "./pages/Archive";
+import { useState } from "react";
 // import { useState } from "react";
 // import SignUp from "./pages/Authentication/SignUp";
 // import { useAuthentication } from "./Contexts/Authentication.context";
@@ -18,7 +19,21 @@ import Archive from "./pages/Archive";
 function App() {
   // const { loggedIn } = useAuthentication();
   // const [authenticate, setAuthenticated] = useState(false);
+  const [notes, setNotes] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  
+  console.log(notes);
 
+  function handleAddNotes(note) {
+    setNotes((notes) => [...notes, note]);
+  }
+  function handleAddTasks(task) {
+    setTasks((tasks) => [...tasks, task]);
+  }
+
+  // function handleActive(active) {
+  //   setActive((active) => !active);
+  // }
   return (
     <div className="flex flex-row ">
       {/* <Router>{renderRoutes()}</Router> */}
@@ -39,12 +54,21 @@ function App() {
         </div>
         <div className="basis-3/4 bg-violet-100 p-3  min-h-screen	">
           <Routes>
-            <Route path="/dashboard" Component={Home} />
-            <Route path="/search" Component={Search} />
-            <Route path="/notes" Component={Notes} />
-            <Route path="/archive" Component={Archive} />
-            <Route path="/bin" Component={Bin} />
-            <Route path="/tasks" Component={Tasks} />
+            <Route
+              path="/dashboard"
+              element={<Home notes={notes} tasks={tasks} />}
+            />
+            <Route path="/search" element={<Search />} />
+            <Route
+              path="/notes"
+              element={<Notes notes={notes} onAddNotes={handleAddNotes} />}
+            />
+            <Route path="/archive" element={<Archive />} />
+            <Route path="/bin" element={<Bin />} />
+            <Route
+              path="/tasks"
+              element={<Tasks tasks={tasks} onAddTasks={handleAddTasks} />}
+            />
           </Routes>
         </div>
       </Router>

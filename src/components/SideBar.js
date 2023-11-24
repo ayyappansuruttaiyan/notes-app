@@ -9,7 +9,7 @@ function SideBar() {
         <li className="mt-2 bg-stone-200 w-60 p-2 rounded">
           <Link to="/">
             <span>
-              <i class="fa-solid fa-right-to-bracket"></i>
+              <i className="fa-solid fa-right-to-bracket"></i>
             </span>
             Login
           </Link>
@@ -17,7 +17,7 @@ function SideBar() {
         <li className="mt-2 w-60 p-2 rounded">
           <Link to="/signup">
             <span>
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </span>
             Signup
           </Link>

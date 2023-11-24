@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
-function Notes() {
+function Notes({ onAddNotes, notes }) {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
-  const [notes, setNotes] = useState([]);
-  console.log(notes.length);
+  // const [notes, setNotes] = useState([]);
+  // console.log(notes.length);
   function handleSubmit(e) {
     e.preventDefault();
-    const newNote = { id: { title }, title, note };
-    if (note !== "") onAddItems(newNote);
+    const newNote = { id: Date.now(), title, note };
+    if (note !== "") onAddNotes(newNote);
     setTitle("");
     setNote("");
   }
 
-  function onAddItems(note) {
-    setNotes((notes) => [...notes, note]);
-  }
+  // function onAddItems(note) {
+  //   setNotes((notes) => [...notes, note]);
+  // }
 
   return (
     <div className="container">
@@ -43,17 +43,17 @@ function Notes() {
           className="border border-solid border-slate-100 p-2"
         />
         <div className="flex items-center bg-slate-100 w-max p-2 gap-2 rounded-full my-3">
-          <i class="fa-regular fa-clock"></i>
+          <i className="fa-regular fa-clock"></i>
           <p>Today, 10:10 AM</p>
         </div>
         <div className="flex gap-6">
-          <i class="fa-solid fa-text-width cursor-pointer"></i>
-          <i class="fa-solid fa-paintbrush cursor-pointer"></i>
-          <i class="fa-solid fa-list-ul cursor-pointer"></i>
-          <i class="fa-solid fa-a cursor-pointer"></i>
-          <i class="fa-solid fa-align-left cursor-pointer"></i>
-          <i class="fa-solid fa-rotate-left cursor-pointer"></i>
-          <i class="fa-solid fa-rotate-right cursor-pointer"></i>
+          <i className="fa-solid fa-text-width cursor-pointer"></i>
+          <i className="fa-solid fa-paintbrush cursor-pointer"></i>
+          <i className="fa-solid fa-list-ul cursor-pointer"></i>
+          <i className="fa-solid fa-a cursor-pointer"></i>
+          <i className="fa-solid fa-align-left cursor-pointer"></i>
+          <i className="fa-solid fa-rotate-left cursor-pointer"></i>
+          <i className="fa-solid fa-rotate-right cursor-pointer"></i>
         </div>
         <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
           Add Note
@@ -64,14 +64,17 @@ function Notes() {
         <>
           <span className="flex row my-4">
             <h4 className="text-xl font-medium">
-              <i class="fa-solid fa-note-sticky mr-2 text-base"></i>My Notes
+              <i className="fa-solid fa-note-sticky mr-2 text-base"></i>My Notes
             </h4>
             <p className="font-sm my-2">Recently Viewed</p>
           </span>
 
           <div className="grid grid-cols-3 gap-2">
             {notes.map((note) => (
-              <div className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150">
+              <div
+                key={note.id}
+                className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150"
+              >
                 <span className="flex justify-between text-xl font-medium">
                   <h2 className="mb-2">{note.title}</h2>
                   <span>

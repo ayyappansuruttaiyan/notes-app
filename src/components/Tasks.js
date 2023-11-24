@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-function Tasks() {
+function Tasks({ tasks, onAddTasks }) {
   const [title, setTitle] = useState("");
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   function handleSubmit(e) {
     e.preventDefault();
     const newTask = { id: Date.now(), title, task, isComplete: false };
@@ -12,9 +12,9 @@ function Tasks() {
     setTask("");
   }
 
-  function onAddTasks(task) {
-    setTasks((tasks) => [...tasks, task]);
-  }
+  // function onAddTasks(task) {
+  //   setTasks((tasks) => [...tasks, task]);
+  // }
   return (
     <div className="container">
       <form
@@ -53,13 +53,17 @@ function Tasks() {
         <>
           <span className="flex row my-4">
             <h4 className="text-xl font-medium">
-              <i class="fa-solid fa-circle-check mr-2 text-base"></i>My Notes
+              <i className="fa-solid fa-circle-check mr-2 text-base"></i>My
+              Notes
             </h4>
             {/* <p className="font-sm my-2">Recently Viewed</p> */}
           </span>
           <div className="columns-1">
             {tasks.map((task) => (
-              <div className="flex bg-white p-3 box-border  shadow-2xl shadow-black/150">
+              <div
+                key={task.id}
+                className="flex bg-white p-3 box-border  shadow-2xl shadow-black/150"
+              >
                 <div className="flex p-2 justify-between items-center text-xl font-medium border w-[100%]">
                   <div className="flex items-center gap-4">
                     <i className="fa-solid fa-circle-check"></i>
