@@ -25,7 +25,7 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
         className=" container flex bg-white w-[100%] flex-col rounded pl-4"
       >
         <span className="flex justify-between mt-3 text-xl font-semibold">
-          <p>Add a note</p>
+          <p>Add a Note</p>
           <i
             onClick={onToggle}
             className="fa-solid fa-xmark cursor-pointer

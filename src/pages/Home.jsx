@@ -15,7 +15,7 @@ function Home({ notes, tasks, onDeleteItem, user }) {
         {notes.length > 0 ? (
           <p className="font-sm my-2">Recently Viewed</p>
         ) : (
-          <p className="font-sm my-2">You have empty notes</p>
+          <p className="font-sm my-2">You have empty notes.</p>
         )}
       </span>
       <div className="grid grid-cols-3 gap-2">
@@ -50,7 +50,7 @@ function Home({ notes, tasks, onDeleteItem, user }) {
         </h4>
 
         <p className="font-sm my-2">
-          {tasks.length > 0 ? "Recently viewed" : "You have empty Notes"}
+          {tasks.length > 0 ? "Recently viewed" : "You have empty tasks."}
         </p>
       </span>
 

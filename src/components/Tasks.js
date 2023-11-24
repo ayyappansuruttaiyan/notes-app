@@ -61,9 +61,8 @@ function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
           <span className="flex row my-4">
             <h4 className="text-xl font-medium">
               <i className="fa-solid fa-circle-check mr-2 text-base"></i>My
-              Notes
+              Tasks
             </h4>
-            {/* <p className="font-sm my-2">Recently Viewed</p> */}
           </span>
           <div className="columns-1">
             {tasks.map((task) => (
