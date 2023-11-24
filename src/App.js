@@ -19,9 +19,19 @@ import { useState } from "react";
 function App() {
   // const { loggedIn } = useAuthentication();
   // const [authenticate, setAuthenticated] = useState(false);
+  const login = { avatar: "", name: "John Doe", email: "johndoe@example.com" };
   const [notes, setNotes] = useState([]);
   const [tasks, setTasks] = useState([]);
-  
+  const [isOpen, setIsOpen] = useState(true);
+
+  function handleDeleteItem(id) {
+    setNotes(notes.filter((note) => note.id !== id));
+    console.log(id);
+  }
+
+  function handleToggle(is) {
+    setIsOpen((is) => !is);
+  }
   console.log(notes);
 
   function handleAddNotes(note) {
@@ -46,8 +56,8 @@ function App() {
               alt="avatar"
             />
             <div className="flex row items-center">
-              <h5 className="text-xl">John Doe</h5>
-              <p className="text-sm">johndoe@gmail.com</p>
+              <h5 className="text-xl">{login.name}</h5>
+              <p className="text-sm">{login.email}</p>
             </div>
           </div>
           <NavBar />
@@ -55,19 +65,39 @@ function App() {
         <div className="basis-3/4 bg-violet-100 p-3  min-h-screen	">
           <Routes>
             <Route
-              path="/dashboard"
-              element={<Home notes={notes} tasks={tasks} />}
+              path="/"
+              element={
+                <Home
+                  notes={notes}
+                  tasks={tasks}
+                  onDeleteItem={handleDeleteItem}
+                />
+              }
             />
             <Route path="/search" element={<Search />} />
             <Route
               path="/notes"
-              element={<Notes notes={notes} onAddNotes={handleAddNotes} />}
+              element={
+                <Notes
+                  notes={notes}
+                  onAddNotes={handleAddNotes}
+                  onToggle={handleToggle}
+                  isOpen={isOpen}
+                  onDeleteItem={handleDeleteItem}
+                />
+              }
             />
             <Route path="/archive" element={<Archive />} />
             <Route path="/bin" element={<Bin />} />
             <Route
               path="/tasks"
-              element={<Tasks tasks={tasks} onAddTasks={handleAddTasks} />}
+              element={
+                <Tasks
+                  tasks={tasks}
+                  onAddTasks={handleAddTasks}
+                  onToggle={handleToggle}
+                />
+              }
             />
           </Routes>
         </div>

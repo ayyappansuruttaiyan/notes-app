@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-function Notes({ onAddNotes, notes }) {
+function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
+  let newNotes = notes;
   // const [notes, setNotes] = useState([]);
   // console.log(notes.length);
   function handleSubmit(e) {
@@ -25,39 +26,46 @@ function Notes({ onAddNotes, notes }) {
       >
         <span className="flex justify-between mt-3 text-xl font-semibold">
           <p>Add a note</p>
-          <i className="fa-solid fa-xmark cursor-pointer"></i>
+          <i
+            onClick={onToggle}
+            className="fa-solid fa-xmark cursor-pointer
+            }"
+          ></i>
         </span>
-
-        <input
-          type="text"
-          value={title}
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-          className="my-4 border border-solid border-slate-100 p-2"
-        />
-        <textarea
-          type="textarea"
-          placeholder="Take a Note"
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          className="border border-solid border-slate-100 p-2"
-        />
-        <div className="flex items-center bg-slate-100 w-max p-2 gap-2 rounded-full my-3">
-          <i className="fa-regular fa-clock"></i>
-          <p>Today, 10:10 AM</p>
-        </div>
-        <div className="flex gap-6">
-          <i className="fa-solid fa-text-width cursor-pointer"></i>
-          <i className="fa-solid fa-paintbrush cursor-pointer"></i>
-          <i className="fa-solid fa-list-ul cursor-pointer"></i>
-          <i className="fa-solid fa-a cursor-pointer"></i>
-          <i className="fa-solid fa-align-left cursor-pointer"></i>
-          <i className="fa-solid fa-rotate-left cursor-pointer"></i>
-          <i className="fa-solid fa-rotate-right cursor-pointer"></i>
-        </div>
-        <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
-          Add Note
-        </button>
+        {isOpen && (
+          <>
+            <input
+              type="text"
+              value={title}
+              placeholder="Title"
+              onChange={(e) => setTitle(e.target.value)}
+              className="my-4 border border-solid border-slate-100 p-2"
+            />
+            <textarea
+              type="textarea"
+              placeholder="Take a Note"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="border border-solid border-slate-100 p-2"
+            />
+            <div className="flex items-center bg-slate-100 w-max p-2 gap-2 rounded-full my-3">
+              <i className="fa-regular fa-clock"></i>
+              <p>Today, 10:10 AM</p>
+            </div>
+            <div className="flex gap-6">
+              <i className="fa-solid fa-text-width cursor-pointer"></i>
+              <i className="fa-solid fa-paintbrush cursor-pointer"></i>
+              <i className="fa-solid fa-list-ul cursor-pointer"></i>
+              <i className="fa-solid fa-a cursor-pointer"></i>
+              <i className="fa-solid fa-align-left cursor-pointer"></i>
+              <i className="fa-solid fa-rotate-left cursor-pointer"></i>
+              <i className="fa-solid fa-rotate-right cursor-pointer"></i>
+            </div>
+            <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
+              Add Note
+            </button>
+          </>
+        )}
       </form>
       {/* start my notes  */}
       {notes.length > 0 && (
@@ -70,7 +78,7 @@ function Notes({ onAddNotes, notes }) {
           </span>
 
           <div className="grid grid-cols-3 gap-2">
-            {notes.map((note) => (
+            {newNotes.map((note) => (
               <div
                 key={note.id}
                 className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150"
@@ -79,7 +87,10 @@ function Notes({ onAddNotes, notes }) {
                   <h2 className="mb-2">{note.title}</h2>
                   <span>
                     <i className="fa-solid fa-pencil mr-3 cursor-pointer"></i>
-                    <i className="fa-solid fa-trash cursor-pointer"></i>
+                    <i
+                      onClick={() => onDeleteItem(note.id)}
+                      className="fa-solid fa-trash cursor-pointer"
+                    ></i>
                   </span>
                 </span>
                 <p className="mb-2">{note.note}</p>

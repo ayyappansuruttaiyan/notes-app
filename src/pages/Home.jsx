@@ -1,6 +1,7 @@
 import React from "react";
 
-function Home({ notes, tasks }) {
+function Home({ notes, tasks, onDeleteItems }) {
+  let newNotes = notes;
   console.log(notes.length);
   return (
     <div className="container bg-violet">
@@ -17,7 +18,7 @@ function Home({ notes, tasks }) {
         )}
       </span>
       <div className="grid grid-cols-3 gap-2">
-        {notes.map((note) => (
+        {newNotes.map((note) => (
           <div
             key={note.id}
             className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150"

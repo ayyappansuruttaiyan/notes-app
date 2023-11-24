@@ -17,7 +17,7 @@ function NavBar({ onMenuClick }) {
           } `}
           onClick={handleActive}
         >
-          <Link to="/dashboard">
+          <Link to="/">
             <span>
               <i className="fa-solid fa-house"></i>
             </span>
