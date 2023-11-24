@@ -1,7 +1,8 @@
 import React from "react";
 
-function Home({ notes, tasks, onDeleteItems }) {
+function Home({ notes, tasks, onDeleteItem }) {
   let newNotes = notes;
+
   console.log(notes.length);
   return (
     <div className="container bg-violet">
@@ -11,7 +12,7 @@ function Home({ notes, tasks, onDeleteItems }) {
         <h4 className="text-xl font-medium">
           <i className="fa-solid fa-note-sticky mr-2 text-base"></i>My Notes
         </h4>
-        {!notes.length === 0 ? (
+        {notes.length > 0 ? (
           <p className="font-sm my-2">Recently Viewed</p>
         ) : (
           <p className="font-sm my-2">You have empty notes</p>
@@ -27,7 +28,10 @@ function Home({ notes, tasks, onDeleteItems }) {
               <h2 className="mb-2">{note.title}</h2>
               <span>
                 <i className="fa-solid fa-pencil mr-3 cursor-pointer"></i>
-                <i className="fa-solid fa-trash cursor-pointer"></i>
+                <i
+                  onClick={() => onDeleteItem(note.id)}
+                  className="fa-solid fa-trash cursor-pointer"
+                ></i>
               </span>
             </span>
             <p className="mb-2">{note.note}</p>
@@ -46,7 +50,7 @@ function Home({ notes, tasks, onDeleteItems }) {
         </h4>
 
         <p className="font-sm my-2">
-          {notes.length > 0 ? "You have empty Notes" : "Recently viewed"}
+          {tasks.length > 0 ? "Recently viewed" : "You have empty Notes"}
         </p>
       </span>
 

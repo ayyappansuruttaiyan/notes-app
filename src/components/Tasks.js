@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Tasks({ tasks, onAddTasks }) {
+function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
   const [title, setTitle] = useState("");
   const [task, setTask] = useState("");
   // const [tasks, setTasks] = useState([]);
@@ -23,30 +23,37 @@ function Tasks({ tasks, onAddTasks }) {
       >
         <span className="flex justify-between mt-3 text-xl font-semibold">
           <p>Add a Task</p>
-          <i className="fa-solid fa-xmark cursor-pointer"></i>
+          <i
+            onClick={onToggle}
+            className="fa-solid fa-xmark cursor-pointer"
+          ></i>
         </span>
-        <input
-          type="text"
-          value={title}
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-          className="my-4 border border-solid border-slate-100 p-2"
-        />
-        <textarea
-          type="textarea"
-          placeholder="Add a Task"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          className="border border-solid border-slate-100 p-2"
-        />
-        <div className="flex items-center">
-          <input className="m-4" type="date" />
-          <span>Date/Time</span>
-        </div>
+        {isOpen && (
+          <>
+            <input
+              type="text"
+              value={title}
+              placeholder="Title"
+              onChange={(e) => setTitle(e.target.value)}
+              className="my-4 border border-solid border-slate-100 p-2"
+            />
+            <textarea
+              type="textarea"
+              placeholder="Add a Task"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              className="border border-solid border-slate-100 p-2"
+            />
+            <div className="flex items-center">
+              <input className="m-4" type="date" />
+              <span>Date/Time</span>
+            </div>
 
-        <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
-          Add Task
-        </button>
+            <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
+              Add Task
+            </button>
+          </>
+        )}
       </form>
 
       {tasks.length > 0 && (

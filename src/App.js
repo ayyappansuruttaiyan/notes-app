@@ -23,6 +23,12 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
+  console.log(notes.length);
+
+  function handleDeletedItem(id) {
+    setNotes(notes.filter((note) => note.id === id));
+    console.log(id);
+  }
 
   function handleDeleteItem(id) {
     setNotes(notes.filter((note) => note.id !== id));
@@ -87,12 +93,19 @@ function App() {
                 />
               }
             />
-            <Route path="/archive" element={<Archive />} />
-            <Route path="/bin" element={<Bin />} />
+            <Route
+              path="/archive"
+              element={<Archive notes={notes} tasks={tasks} />}
+            />
+            <Route
+              path="/bin"
+              element={<Bin deletedItem={handleDeletedItem} notes={notes} />}
+            />
             <Route
               path="/tasks"
               element={
                 <Tasks
+                  isOpen={isOpen}
                   tasks={tasks}
                   onAddTasks={handleAddTasks}
                   onToggle={handleToggle}
