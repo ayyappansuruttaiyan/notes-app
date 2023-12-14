@@ -5,10 +5,10 @@ function Home({ notes, tasks, onDeleteItem, user }) {
 
   console.log(notes.length);
   return (
-    <div className="container bg-violet">
+    <div className="bg-violet container">
       {/* start my notes  */}
-      <h1 className="text-xl my-3 font-medium">Welcome {user.name}</h1>
-      <span className="flex row my-4">
+      <h1 className="my-3 text-xl font-medium">Welcome {user.name}</h1>
+      <span className="row my-4 flex">
         <h4 className="text-xl font-medium">
           <i className="fa-solid fa-note-sticky mr-2 text-base"></i>My Notes
         </h4>
@@ -22,7 +22,7 @@ function Home({ notes, tasks, onDeleteItem, user }) {
         {newNotes.map((note) => (
           <div
             key={note.id}
-            className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150"
+            className="shadow-black/150  box-border basis-1/4 rounded  bg-white p-2 shadow-2xl"
           >
             <span className="flex justify-between text-xl font-medium">
               <h2 className="mb-2">{note.title}</h2>
@@ -44,7 +44,7 @@ function Home({ notes, tasks, onDeleteItem, user }) {
 
       {/* start my task */}
       {/* <h1 className="text-xl my-3 font-medium">Welcome John</h1> */}
-      <span className="flex row my-4">
+      <span className="row my-4 flex">
         <h4 className="text-xl font-medium">
           <i className="fa-solid fa-circle-check mr-2 text-base"></i>My Tasks
         </h4>
@@ -58,9 +58,9 @@ function Home({ notes, tasks, onDeleteItem, user }) {
         {tasks.map((task) => (
           <div
             key={task.id}
-            className="flex bg-white p-3 box-border  shadow-2xl shadow-black/150"
+            className="shadow-black/150 box-border flex bg-white  p-3 shadow-2xl"
           >
-            <div className="flex p-2 justify-between items-center text-xl font-medium border w-[100%]">
+            <div className="flex w-[100%] items-center justify-between border p-2 text-xl font-medium">
               <div className="flex items-center gap-4">
                 <i className="fa-solid fa-circle-check"></i>
                 <div className="flex flex-col">

@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useContext } from 'react';
+import { TasksContext } from '../context/TasksContext';
 
 function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
-  const [title, setTitle] = useState("");
-  const [note, setNote] = useState("");
+  const { dispatch } = useContext(TasksContext);
+
+  const [title, setTitle] = useState('');
+  const [note, setNote] = useState('');
   let newNotes = notes;
   // const [notes, setNotes] = useState([]);
   // console.log(notes.length);
   function handleSubmit(e) {
     e.preventDefault();
     const newNote = { id: Date.now(), title, note };
-    if (note !== "") onAddNotes(newNote);
-    setTitle("");
-    setNote("");
+    dispatch({ type: 'ADD_TASK', payload: newNote });
+    if (note !== '') onAddNotes(newNote);
+    axios
+      .post('http://localhost:3001/addnotes', { id: Date.now(), title, note })
+      .then((note) => console.log(note))
+      .catch((err) => console.log(err));
+    setTitle('');
+    setNote('');
   }
 
   // function onAddItems(note) {
@@ -22,14 +32,14 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
     <div className="container">
       <form
         onSubmit={handleSubmit}
-        className=" container flex bg-white w-[100%] flex-col rounded pl-4"
+        className=" container flex w-[100%] flex-col rounded bg-white pl-4"
       >
-        <span className="flex justify-between mt-3 text-xl font-semibold">
+        <span className="mt-3 flex justify-between text-xl font-semibold">
           <p>Add a Note</p>
           <i
             onClick={onToggle}
-            className="fa-solid fa-xmark cursor-pointer
-            }"
+            className="fa-solid fa-xmark }
+            cursor-pointer"
           ></i>
         </span>
         {isOpen && (
@@ -48,7 +58,7 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
               onChange={(e) => setNote(e.target.value)}
               className="border border-solid border-slate-100 p-2"
             />
-            <div className="flex items-center bg-slate-100 w-max p-2 gap-2 rounded-full my-3">
+            <div className="my-3 flex w-max items-center gap-2 rounded-full bg-slate-100 p-2">
               <i className="fa-regular fa-clock"></i>
               <p>Today, 10:10 AM</p>
             </div>
@@ -61,7 +71,7 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
               <i className="fa-solid fa-rotate-left cursor-pointer"></i>
               <i className="fa-solid fa-rotate-right cursor-pointer"></i>
             </div>
-            <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
+            <button className="justify-content my-4 flex w-max items-center rounded-full bg-slate-200 p-2 font-semibold">
               Add Note
             </button>
           </>
@@ -70,7 +80,7 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
       {/* start my notes  */}
       {notes.length > 0 && (
         <>
-          <span className="flex row my-4">
+          <span className="row my-4 flex">
             <h4 className="text-xl font-medium">
               <i className="fa-solid fa-note-sticky mr-2 text-base"></i>My Notes
             </h4>
@@ -81,7 +91,7 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
             {newNotes.map((note) => (
               <div
                 key={note.id}
-                className="basis-1/4  bg-white p-2 box-border  rounded shadow-2xl shadow-black/150"
+                className="shadow-black/150  box-border basis-1/4 rounded  bg-white p-2 shadow-2xl"
               >
                 <span className="flex justify-between text-xl font-medium">
                   <h2 className="mb-2">{note.title}</h2>
@@ -100,69 +110,6 @@ function Notes({ onAddNotes, notes, onToggle, isOpen, onDeleteItem }) {
           </div>
         </>
       )}
-
-      {/* <div className="columns-3">
-        <div className="basis-1/3 bg-white p-2 box-border  rounded shadow-2xl shadow-black/150">
-          <span className="flex justify-between text-xl font-medium">
-            <h2 className="mb-2">Feedbacks</h2>
-            <span>
-              <i className="fa-solid fa-pencil mr-3"></i>
-              <i className="fa-solid fa-trash"></i>
-            </span>
-          </span>
-          <p className="mb-2">
-            Lorem ipsum dolor sit amet consectetur. Sollicitudin enim risus ut
-            vestibulum morbi tellus sit ac. Fames auctor quisque et aliquam
-            maecenas sed at vitae facilisis. .
-          </p>
-          <p>5 days ago</p>
-        </div>
-        <div className="basis-1/3 bg-white p-2 box-border rounded shadow-2xl shadow-black/150">
-          <span className="flex justify-between text-xl font-medium">
-            <h2 className="mb-2">Feedbacks</h2>
-            <span>
-              <i className="fa-solid fa-pencil mr-3"></i>
-              <i className="fa-solid fa-trash"></i>
-            </span>
-          </span>
-          <p className="mb-2">
-            Lorem ipsum dolor sit amet consectetur. Sollicitudin enim risus ut
-            vestibulum morbi tellus sit ac. Fames auctor quisque et aliquam
-            maecenas sed at vitae facilisis. .
-          </p>
-          <p>5 days ago</p>
-        </div>
-        <div className="basis-1/3 bg-white p-2 box-border rounded shadow-2xl shadow-black/150">
-          <span className="flex justify-between text-xl font-medium">
-            <h2 className="mb-2">Feedbacks</h2>
-            <span>
-              <i className="fa-solid fa-pencil mr-3"></i>
-              <i className="fa-solid fa-trash"></i>
-            </span>
-          </span>
-          <p className="mb-2">
-            Lorem ipsum dolor sit amet consectetur. Sollicitudin enim risus ut
-            vestibulum morbi tellus sit ac. Fames auctor quisque et aliquam
-            maecenas sed at vitae facilisis. .
-          </p>
-          <p>5 days ago</p>
-        </div>
-      </div> */}
-      {/* end my notes  */}
-      {/* <div>
-        <p>My Notes</p>
-        <p>Recently viewed</p>
-        {notes.map((note) => (
-          <>
-            <span>
-              <span>Edit</span>
-              <span>delete</span>
-            </span>
-            <p>{note.title}</p>
-            <p>{note.note}</p>
-          </>
-        ))}
-      </div> */}
     </div>
   );
 }

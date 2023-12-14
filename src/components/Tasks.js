@@ -1,15 +1,29 @@
-import React, { useState } from "react";
-
+import React, { useState } from 'react';
+import axios from 'axios';
 function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
-  const [title, setTitle] = useState("");
-  const [task, setTask] = useState("");
+  const [title, setTitle] = useState('');
+  const [task, setTask] = useState('');
+
+  axios
+    .get('http://localhost:3001/tasks')
+    .then((task) => console.log(task))
+    .catch((err) => console.log(err));
   // const [tasks, setTasks] = useState([]);
   function handleSubmit(e) {
     e.preventDefault();
     const newTask = { id: Date.now(), title, task, isComplete: false };
-    if (title !== "") onAddTasks(newTask);
-    setTitle("");
-    setTask("");
+    if (title !== '') onAddTasks(newTask);
+    axios
+      .post('http://localhost:3001/addtasks', {
+        id: Date.now(),
+        title,
+        task,
+        isComplete: false,
+      })
+      .then((task) => console.log(task))
+      .catch((err) => console.log(err));
+    setTitle('');
+    setTask('');
   }
 
   // function onAddTasks(task) {
@@ -19,9 +33,9 @@ function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
     <div className="container">
       <form
         onSubmit={handleSubmit}
-        className=" container flex bg-white w-[100%] flex-col rounded pl-4"
+        className=" container flex w-[100%] flex-col rounded bg-white pl-4"
       >
-        <span className="flex justify-between mt-3 text-xl font-semibold">
+        <span className="mt-3 flex justify-between text-xl font-semibold">
           <p>Add a Task</p>
           <i
             onClick={onToggle}
@@ -49,7 +63,7 @@ function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
               <span>Date/Time</span>
             </div>
 
-            <button className="flex bg-slate-200 w-max rounded-full p-2 items-center justify-content my-4 font-semibold">
+            <button className="justify-content my-4 flex w-max items-center rounded-full bg-slate-200 p-2 font-semibold">
               Add Task
             </button>
           </>
@@ -58,7 +72,7 @@ function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
 
       {tasks.length > 0 && (
         <>
-          <span className="flex row my-4">
+          <span className="row my-4 flex">
             <h4 className="text-xl font-medium">
               <i className="fa-solid fa-circle-check mr-2 text-base"></i>My
               Tasks
@@ -68,9 +82,9 @@ function Tasks({ tasks, onAddTasks, onToggle, isOpen }) {
             {tasks.map((task) => (
               <div
                 key={task.id}
-                className="flex bg-white p-3 box-border  shadow-2xl shadow-black/150"
+                className="shadow-black/150 box-border flex bg-white  p-3 shadow-2xl"
               >
-                <div className="flex p-2 justify-between items-center text-xl font-medium border w-[100%]">
+                <div className="flex w-[100%] items-center justify-between border p-2 text-xl font-medium">
                   <div className="flex items-center gap-4">
                     <i className="fa-solid fa-circle-check"></i>
                     <div className="flex flex-col">
